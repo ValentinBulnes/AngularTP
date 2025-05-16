@@ -1,0 +1,23 @@
+<div class="beer-container">
+    <h1>Lista de Cervezas</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Precio</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let beer of beers" [ngClass]="{'clearance': beer.clearance}">
+                <td><img [src]="beer.image" [alt]="beer.name" class="beer-image"></td>
+                <td>{{beer.name}}</td>
+                <td>{{beer.type}}</td>
+                <td>{{beer.price | currency}}</td>
+                <td><span class="badge text-bg-warning" *ngIf="beer.stock == 0">SIN STOCK</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

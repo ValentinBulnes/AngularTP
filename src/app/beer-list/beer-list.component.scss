@@ -1,0 +1,24 @@
+.beer-image {
+  width: 200px;
+  height: 200px;
+}
+
+h1 {
+  color:blue;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table tbody tr.clearance {
+  border: 2px solid green;
+  background-color: lightgreen;
+}
+
+.table tbody tr.clearance td {
+  background-color: lightgreen;
+}
+
