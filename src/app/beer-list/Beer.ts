@@ -1,6 +1,7 @@
 export interface Beer {
+    id: number;
     name: string;
-    type: string;
+    style: string;
     price: number;
     stock: number;
     image: string;

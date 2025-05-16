@@ -11,13 +11,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let beer of beers" [ngClass]="{'clearance': beer.clearance}">
-                <td><img [src]="beer.image" [alt]="beer.name" class="beer-image"></td>
-                <td>{{beer.name}}</td>
-                <td>{{beer.type}}</td>
-                <td>{{beer.price | currency}}</td>
-                <td><span class="badge text-bg-warning" *ngIf="beer.stock == 0">SIN STOCK</span></td>
-            </tr>
+            @for (beer of beers; track beer.id) {
+                <tr [ngClass]="{'clearance': beer.clearance}">
+                    <td><img [src]="beer.image" [alt]="beer.name" class="beer-image"></td>
+                    <td>{{ beer.name }}</td>
+                    <td>{{ beer.price }}</td>
+                    <td>{{ beer.style }}</td>
+                    @if (beer.stock > 0) {
+                        <td>{{ beer.stock }}</td>
+                    } @else {
+                        <td><span class="badge text-bg-warning">SIN STOCK</span></td>
+                    }
+                </tr>
+              } @empty {    /* Si no hay cervezas para mostrar */
+                <tr>
+                  <td colspan="4">No hay cervezas para mostrar.</td>
+                </tr>
+              }
+              
         </tbody>
     </table>
 </div>
