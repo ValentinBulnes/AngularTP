@@ -1,21 +1,25 @@
-.beer-image {
-  width: 200px;
-  height: 200px;
-}
-
-h1 {
-  color:blue;
-}
-
 .table {
   width: 100%;
-  border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 0;
 }
 
+.clearance {
+  background-color: lightgreen;
+  outline: 2px solid green;
+  outline-offset: -2px;
+}
 
-.clearance td{
+.clearance td {
   background-color: lightgreen;
 }
 
+td {
+  vertical-align: middle;
+  padding: 8px;
+}
+
+input {
+  max-width: 40px;
+}
 

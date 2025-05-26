@@ -18,6 +18,7 @@ export class BeerListComponent {
       stock: 5,
       image: "assets/images/negra-juerte.jpg",
       clearance: false,
+      quantity: 0,
     },
     {
       id: 2,
@@ -27,6 +28,7 @@ export class BeerListComponent {
       stock: 3,
       image: "assets/images/negra-juerte.jpg",
       clearance: true,
+      quantity: 0,
     },
     {
       id: 3,
@@ -36,6 +38,7 @@ export class BeerListComponent {
       stock: 0,
       image: "assets/images/negra-juerte.jpg",
       clearance: false,
+      quantity: 0,
     },
     {
       id: 4,
@@ -45,9 +48,37 @@ export class BeerListComponent {
       stock: 0,
       image: "assets/images/negra-juerte.jpg",
       clearance: false,
+      quantity: 0,
     }
   ]
 
   constructor() { }
-  
+
+  upQuantity(beer: Beer): void {
+    if (beer.quantity < beer.stock) {
+      beer.quantity++;
+    }
+  }
+
+  downQuantity(beer: Beer): void {
+    if (beer.quantity > 0) {
+      beer.quantity--;
+    }
+  }
+
+  changeQuantity(event: any, beer: Beer): void {
+    const value = event.target.value;
+    
+    // Validar que no sea negativo
+    if (value < 0) {
+      beer.quantity = 0;
+      return;
+    }
+
+    // Validar que no exceda el stock
+    if (value > beer.stock) {
+      beer.quantity = beer.stock;
+      return;
+    }
+  }
 }

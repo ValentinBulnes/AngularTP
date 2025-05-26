@@ -1,27 +1,39 @@
 <div class="beer-container">
-    <h1>Lista de Cervezas</h1>
-    <table class="table">
+    <h3>Lista de Cervezas</h3>
+    <table class="table text-center">
         <thead>
             <tr>
-                <th>Imagen</th>
+                <th></th>
                 <th>Nombre</th>
                 <th>Tipo</th>
                 <th>Precio</th>
                 <th>Stock</th>
+                <th>Compras</th>
             </tr>
         </thead>
         <tbody>
             @for (beer of beers; track beer.id) {
                 <tr [ngClass]="{'clearance': beer.clearance}">
-                    <td><img [src]="beer.image" [alt]="beer.name" class="beer-image"></td>
+                    <td><img [src]="beer.image" [alt]="beer.name" class="img-thumbnail" width="100"></td>
                     <td>{{ beer.name }}</td>
-                    <td>{{ beer.price }}</td>
+                    <td>{{ beer.price | currency }}</td>
                     <td>{{ beer.style }}</td>
                     @if (beer.stock > 0) {
                         <td>{{ beer.stock }}</td>
                     } @else {
                         <td><span class="badge text-bg-warning">SIN STOCK</span></td>
                     }
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-primary btn-sm" (click)="downQuantity(beer)">-</button>
+                            </div>
+                            <input type="number" [(ngModel)]="beer.quantity"(keyup)="changeQuantity($event, beer)">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary btn-sm" (click)="upQuantity(beer)">+</button>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
               } @empty {    /* Si no hay cervezas para mostrar */
                 <tr>
