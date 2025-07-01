@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Beer } from './Beer';
 
 @Component({
@@ -7,7 +7,7 @@ import { Beer } from './Beer';
   templateUrl: './beer-list.component.html',
   styleUrl: './beer-list.component.scss'
 })
-export class BeerListComponent {
+export class BeerListComponent implements OnInit {
 
   beers: Beer[] = [
     {
@@ -54,31 +54,11 @@ export class BeerListComponent {
 
   constructor() { }
 
-  upQuantity(beer: Beer): void {
-    if (beer.quantity < beer.stock) {
-      beer.quantity++;
-    }
+  ngOnInit(): void {}
+
+  maxReached(m : string) {
+    alert(m);
   }
 
-  downQuantity(beer: Beer): void {
-    if (beer.quantity > 0) {
-      beer.quantity--;
-    }
-  }
 
-  changeQuantity(event: any, beer: Beer): void {
-    const value = event.target.value;
-    
-    // Validar que no sea negativo
-    if (value < 0) {
-      beer.quantity = 0;
-      return;
-    }
-
-    // Validar que no exceda el stock
-    if (value > beer.stock) {
-      beer.quantity = beer.stock;
-      return;
-    }
-  }
 }
