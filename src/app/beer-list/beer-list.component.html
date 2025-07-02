@@ -9,6 +9,7 @@
                 <th>Precio</th>
                 <th>Stock</th>
                 <th>Compras</th>
+                <th>Agregar al carrito</th>
             </tr>
         </thead>
         <tbody>
@@ -22,8 +23,8 @@
                         <td>{{ beer.stock }}</td>
                         <td>
                             <app-input-integer [(quantity)]="beer.quantity" [max]="beer.stock" (maxReached)="maxReached($event)"></app-input-integer>
-                            Cantidad: {{ beer.quantity }}
                         </td>
+                        <td><button class="btn btn-primary" (click)="addToCart(beer)">Agregar al carrito</button></td>
                     } @else {
                         <td><span class="badge text-bg-warning">SIN STOCK</span></td>
                     }
