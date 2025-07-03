@@ -1,0 +1,50 @@
+<div class="container-fluid p-4">
+    <h3 class="text-center text-danger mb-4">Catálogo de Vinos</h3>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th style="width: 200px;">Imagen</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Región</th>
+                    <th>Año</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Cantidad</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (wine of wines; track wine.id) {
+                    <tr [ngClass]="{'table-warning': wine.clearance}">
+                        <td><img [src]="wine.image" [alt]="wine.name" class="img-thumbnail" style="width: 180px; height: 180px; object-fit: contain;"></td>
+                        <td class="fw-bold">{{ wine.name }}</td>
+                        <td><span class="badge bg-secondary">{{ wine.type }}</span></td>
+                        <td>{{ wine.region }}</td>
+                        <td><span class="badge bg-info">{{ wine.year }}</span></td>
+                        <td class="fw-bold text-success">
+                            {{ wine.price | currency }}
+                            <span *ngIf="wine.clearance" class="badge bg-warning text-dark ms-2">¡EN OFERTA!</span>
+                        </td>
+                        @if (wine.stock > 0) {
+                            <td><span class="badge bg-success">{{ wine.stock }}</span></td>
+                            <td>
+                                <app-input-integer [(quantity)]="wine.quantity" [max]="wine.stock" (maxReached)="maxReached($event)"></app-input-integer>
+                            </td>
+                            <td><button class="btn btn-danger btn-sm" (click)="addToCart(wine)">Agregar</button></td>
+                        } @else {
+                            <td><span class="badge bg-warning text-dark">SIN STOCK</span></td>
+                            <td></td>
+                            <td></td>
+                        }
+                    </tr>
+                  } @empty {
+                    <tr>
+                      <td colspan="9" class="text-muted">No hay vinos disponibles.</td>
+                    </tr>
+                  }
+            </tbody>
+        </table>
+    </div>
+</div> 

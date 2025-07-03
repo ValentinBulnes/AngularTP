@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Beer } from '../beer-list/Beer';
 
 @Component({
   selector: 'app-input-integer',
@@ -29,7 +28,7 @@ export class InputIntegerComponent implements OnInit {
       this.quantityChange.emit(this.quantity);
     }
     else {
-      this.maxReached.emit("No se puede agregar más cerveza");
+      this.maxReached.emit("No se puede agregar más vino");
     }
   }
 
