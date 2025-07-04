@@ -1,5 +1,5 @@
 {
-  "name": "brewery",
+  "name": "vinoteca",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:brewery": "node dist/brewery/server/server.mjs"
+    "serve:ssr:vinoteca": "node dist/vinoteca/server/server.mjs"
   },
   "private": true,
   "dependencies": {

@@ -9,4 +9,4 @@ export interface Wine {
     image: string;
     clearance: boolean;
     quantity: number;
-} 
+}

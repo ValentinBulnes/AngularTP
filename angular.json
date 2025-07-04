@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "brewery": {
+    "vinoteca": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/brewery",
+            "outputPath": "dist/vinoteca",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -74,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "brewery:build:production"
+              "buildTarget": "vinoteca:build:production"
             },
             "development": {
-              "buildTarget": "brewery:build:development"
+              "buildTarget": "vinoteca:build:development"
             }
           },
           "defaultConfiguration": "development"
