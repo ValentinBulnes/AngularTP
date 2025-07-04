@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { WineDataService } from '../wine-data.service';
+import { User } from './User';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,6 +18,8 @@ export class SignUpComponent {
     confirmPassword: new FormControl('', []),
   }, [this.isMismatch]);
 
+  constructor(private wineDataService: WineDataService) {}
+
   isMismatch (control: AbstractControl): ValidationErrors | null {
 
     if (control.get('password')?.value !== control.get('confirmPassword')?.value) {
@@ -24,11 +28,22 @@ export class SignUpComponent {
     return null;
   }
     
-
   onSubmit() {
     if (this.formSignUp.valid) {
-      console.log(this.formSignUp.value);
-    } else {
+
+      const userData: User = {
+        username: this.formSignUp.value.username!,
+        email: this.formSignUp.value.email!,
+        password: this.formSignUp.value.password!,
+      };
+
+      this.wineDataService.createUser(userData).subscribe(response => {
+      console.log('Usuario creado con éxito:', response);
+      alert('¡Te has registrado correctamente!');
+      this.formSignUp.reset();
+});
+    } 
+    else {
       console.log('Formulario no válido');
     }
   }
